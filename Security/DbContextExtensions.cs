@@ -9,6 +9,13 @@ namespace WeatherForecastAPI.Security
 {
     public class DbContextExtensions
     {
+        private readonly IConfiguration _config;
+        
+        public DbContextExtensions(IConfiguration _config)
+        {
+            this._config = _config;
+        }
+        
         public DbContextOptions<WeatherInfoContext> DbContextOptionsFactory(IServiceProvider provider)
         {
             var connectionString = GetConnectionStringFromHeader(provider);
@@ -20,7 +27,7 @@ namespace WeatherForecastAPI.Security
 
         private string GetConnectionStringFromHeader(IServiceProvider provider)
         {
-            return "Server=weather-service-server.database.windows.net;Uid=sqlWeatherServiceLogin;Password=O%1V3STLZin##N;Database=WeatherInfo;Connection Timeout=60";
+            return _config["Weather:ConnectionString"];
         }
     }
 }

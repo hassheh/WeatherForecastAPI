@@ -15,8 +15,7 @@ There could be differnet filter options that could be added to fetch the more ac
 # Example of returned data:
 
 
-
-    "id": 21,
+    {"id": 21,
     
     "cityName": "Espoo",
     
@@ -36,5 +35,5 @@ There could be differnet filter options that could be added to fetch the more ac
     
     "exceedsLimits": true,
     
-    "weatherDate": "2021-11-04T21:00:00"
+    "weatherDate": "2021-11-04T21:00:00"}
 

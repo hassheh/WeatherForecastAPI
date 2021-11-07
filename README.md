@@ -1,7 +1,6 @@
 # WeatherForecastAPI
 
-The API provides the saved data through the https://github.com/hassheh/WeatherService service.
-
+The API provides the data which is fetched and processed through the https://github.com/hassheh/WeatherService service.
 
 # How to run
 

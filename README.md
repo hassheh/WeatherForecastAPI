@@ -12,6 +12,8 @@ The API call could be made to the local
 A call to http://localhost:5000/api/WeatherForecast? will return all the saved data. 
 There could be differnet filter options that could be added to fetch the more accurate data.
 
+Example data:
+
 {
     "id": 21,
     "cityName": "Espoo",

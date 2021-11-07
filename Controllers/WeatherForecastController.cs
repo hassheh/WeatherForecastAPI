@@ -3,35 +3,34 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using WeatherForecastAPI.GetWeather;
 using WeatherForecastAPI.Models;
 
 namespace WeatherForecastAPI.Controllers
 {
-    [ApiController]
+    
     [Route("api/[controller]")]
+    [ApiController] 
     public class WeatherForecastController : ControllerBase
     {
-        private readonly WeatherInfoContext _dbContext;
-        public WeatherForecastController(WeatherInfoContext _dbContext)
+        public IGetWeatherForcast _getWeatherForcast { get; set; }
+
+        public WeatherForecastController(IGetWeatherForcast _getWeatherForcast)
         {
-            this._dbContext = _dbContext;
+            this._getWeatherForcast = _getWeatherForcast;
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(WeatherData))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<WeatherData>>> Get()
         {
-            var weatherData =  await _dbContext.WeatherData
-                .AsNoTracking()
-                .ToListAsync();
-
-            if (weatherData.Count > 0)            
+            var weatherData = await _getWeatherForcast.GetStoredWeatherForcast();
+            
+            if (weatherData.Count > 0)
                 return Ok(weatherData);            
             else
                 return NotFound();
-
         }
     }
 }

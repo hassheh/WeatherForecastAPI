@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WeatherForecastAPI.Security;
+using WeatherForecastAPI.GetWeather;
 
 namespace WeatherForecastAPI
 {
@@ -21,13 +20,7 @@ namespace WeatherForecastAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddEntityFrameworkSqlServer();
-
-            var extensions = new DbContextExtensions();
-            var descriptor = new ServiceDescriptor(
-                typeof(DbContextOptions<WeatherInfoContext>),
-                extensions.DbContextOptionsFactory,
-                ServiceLifetime.Scoped);
+            services.AddSingleton<IGetWeatherForcast, GetWeatherForcast>();
 
             services.AddSwaggerGen();
         }

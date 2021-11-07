@@ -10,7 +10,7 @@ The API provides the data which is fetched and processed through the https://git
 
 A call to http://localhost:port/api/WeatherForecast? will return all the saved data from Azure SQL server.
 
-There could be differnet filter options that could be added to fetch the more accurate data.
+There could be differnet filter options that could be added to fetch the more accurate data in the future.
 
 # Example of returned data:
 
